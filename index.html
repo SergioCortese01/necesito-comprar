@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Necesito</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Necesito</h1>
+            <p class="subtitulo">Comprar, Alquilar, Contratar, Conseguir</p>
+            <div class="fecha-hora">
+                <p id="fecha">Fecha: --/--/----</p>
+                <p id="hora">Hora: --:--</p>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <section id="publicar" class="section">
+            <div class="titulo-publicar">
+                <h2>¿Qué necesitas?</h2>
+                <p>Escribe lo que necesites comprar, alquilar, contratar o conseguir</p>
+            </div>
+            <form id="publicar-form" class="form">
+                <textarea placeholder="¿Qué necesitas comprar o contratar?" required></textarea>
+                <button type="submit" class="btn">Publicar</button>
+            </form>
+        </section>
+        <div class="contenido-principal">
+            <section id="publicaciones" class="section">
+                <div class="titulo-publicar">
+                    <h2>Publicaciones Recientes</h2>
+                </div>
+                <div id="lista-publicaciones" class="publicaciones">
+                    <!-- Aquí se mostrarán las publicaciones -->
+                    <div class="publicacion">
+                        <button class="responder-btn btn">Responder</button>
+                        <small>2023-10-01 12:00</small>
+                        <div class="chat-area" style="display: none;">
+                            <div class="chat-messages"></div>
+                            <div class="chat-vendedor">
+                                <input type="text" class="chat-input chat-input-vendedor" placeholder="Responde vendedor...">
+                                <button class="enviar-chat-btn btn" data-role="vendedor">Enviar</button>
+                            </div>
+                            <div class="chat-comprador">
+                                <input type="text" class="chat-input chat-input-comprador" placeholder="Escribe comprador...">
+                                <button class="enviar-chat-btn btn" data-role="comprador">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="patrocinante" class="section">
+                <h2>Patrocinante</h2>
+                <div class="patrocinante-content">
+                    <button class="contacto-btn btn">ANUNCIO</button>
+                    <div id="contacto-modal" class="modal" style="display: none;">
+                        <div class="modal-content">
+                            <p>Comunícate con Sergio Cortese a <a href="mailto:sergiocortese72@gmail.com">sergiocortese72@gmail.com</a></p>
+                            <button class="cerrar-modal-btn btn">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Necesito. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
