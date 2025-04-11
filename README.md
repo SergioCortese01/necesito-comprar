@@ -21,7 +21,7 @@
 2. Abre el archivo `index.html` en tu navegador.
 
 ## Despliegue
-Puedes acceder a la página en [GitHub Pages](https://<tu-usuario>.github.io/necesito-comprar/) (reemplaza `<tu-usuario>` con tu nombre de usuario de GitHub).
+Puedes acceder a la página en [GitHub Pages](https://SergioCortese01.github.io/necesito-comprar/).
 
 ## Contacto
 Para consultas, puedes contactar a **Sergio Cortese** en [sergiocortese72@gmail.com](mailto:sergiocortese72@gmail.com).
