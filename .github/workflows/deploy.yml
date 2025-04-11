@@ -18,4 +18,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./  # Publicar desde la raíz del repositorio
-        publish_branch: main  # Publicar en la rama main
