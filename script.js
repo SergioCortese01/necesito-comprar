@@ -1,58 +1,54 @@
-document.getElementById('publicar-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const textarea = this.querySelector('textarea');
-    textarea.placeholder = "Escribe lo que necesites comprar, alquilar, contratar, conseguir"; // Cambiar el texto del placeholder
-    const text = textarea.value.trim();
-    if (text) {
-        const publicaciones = document.getElementById('lista-publicaciones');
-        const nuevaPublicacion = document.createElement('div');
-        nuevaPublicacion.className = 'publicacion';
-        nuevaPublicacion.innerHTML = `
-            <p>${text}</p>
+document.addEventListener("DOMContentLoaded", () => {
+    const publicarForm = document.getElementById("publicar-form");
+    const listaPublicaciones = document.getElementById("lista-publicaciones");
+
+    publicarForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const texto = publicarForm.querySelector("textarea").value;
+        if (texto.trim() === "") return;
+
+        const publicacion = document.createElement("div");
+        publicacion.classList.add("publicacion");
+        publicacion.innerHTML = `
+            <p>${texto}</p>
+            <button class="responder-btn btn">Responder</button>
             <small>${new Date().toLocaleString()}</small>
-            <button class="responder-btn">Responder</button>
-            <div class="respuestas"></div>
             <div class="chat-area" style="display: none;">
                 <div class="chat-messages"></div>
-                <input type="text" class="chat-input chat-input-vendedor" placeholder="Responde vendedor...">
-                <button class="enviar-chat-btn" data-role="vendedor">Enviar</button>
-                <input type="text" class="chat-input chat-input-comprador" placeholder="Escribe comprador...">
-                <button class="enviar-chat-btn" data-role="comprador">Enviar</button>
+                <div class="chat-vendedor">
+                    <input type="text" class="chat-input chat-input-vendedor" placeholder="Responde vendedor...">
+                    <button class="enviar-chat-btn btn" data-role="vendedor">Enviar</button>
+                </div>
+                <div class="chat-comprador">
+                    <input type="text" class="chat-input chat-input-comprador" placeholder="Escribe comprador...">
+                    <button class="enviar-chat-btn btn" data-role="comprador">Enviar</button>
+                </div>
             </div>
         `;
-        publicaciones.prepend(nuevaPublicacion);
-        textarea.value = '';
-    }
-});
+        listaPublicaciones.appendChild(publicacion);
+        publicarForm.reset();
+    });
 
-document.getElementById('lista-publicaciones').addEventListener('click', function(event) {
-    if (event.target.classList.contains('responder-btn')) {
-        const publicacion = event.target.closest('.publicacion');
-        const chatArea = publicacion.querySelector('.chat-area');
-        chatArea.style.display = chatArea.style.display === 'none' ? 'block' : 'none';
-    } else if (event.target.classList.contains('enviar-chat-btn')) {
-        const chatArea = event.target.closest('.chat-area');
-        const input = event.target.previousElementSibling; // Campo de entrada asociado
-        const messages = chatArea.querySelector('.chat-messages');
-        const message = input.value.trim();
-
-        if (message) {
-            const newMessage = document.createElement('div');
-            newMessage.className = 'chat-message';
-
-            // Identificar si es comprador o vendedor
-            if (event.target.dataset.role === 'comprador') {
-                newMessage.classList.add('comprador'); // Mensaje del comprador
-            } else if (event.target.dataset.role === 'vendedor') {
-                newMessage.classList.add('vendedor'); // Mensaje del vendedor
-            }
-
-            newMessage.textContent = message;
-            messages.appendChild(newMessage);
-            input.value = ''; // Limpiar el campo de entrada
-            messages.scrollTop = messages.scrollHeight; // Desplazar hacia abajo
+    listaPublicaciones.addEventListener("click", (e) => {
+        if (e.target.classList.contains("responder-btn")) {
+            const chatArea = e.target.nextElementSibling.nextElementSibling;
+            chatArea.style.display = chatArea.style.display === "none" ? "block" : "none";
         }
-    }
+
+        if (e.target.classList.contains("enviar-chat-btn")) {
+            const role = e.target.dataset.role;
+            const input = e.target.previousElementSibling;
+            const mensaje = input.value.trim();
+            if (mensaje === "") return;
+
+            const chatMessages = e.target.closest(".chat-area").querySelector(".chat-messages");
+            const mensajeDiv = document.createElement("div");
+            mensajeDiv.classList.add("chat-message", role);
+            mensajeDiv.textContent = mensaje;
+            chatMessages.appendChild(mensajeDiv);
+            input.value = "";
+        }
+    });
 });
 
 document.querySelector('.contacto-btn').addEventListener('click', function() {
